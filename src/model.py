@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 
 class MultiHeadAttention(nn.Module):
-    def __init__(self, d_model: int, n_heads: int):
+    def __init__(self, d_model: int, n_heads: int, dropout=0.1):
         super().__init__()
         self.d_model = d_model
         self.n_heads = n_heads 
@@ -17,7 +17,7 @@ class MultiHeadAttention(nn.Module):
         self.o_linear = nn.Linear(d_model, d_model)
 
         #define dropout 
-        self.dropout = nn.Dropout(p=0.1)
+        self.dropout = nn.Dropout(p=dropout)
 
 
 
