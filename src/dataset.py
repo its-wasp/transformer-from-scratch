@@ -12,12 +12,17 @@ class CopyDataset(Dataset):
         return self.num_samples
 
     def __getitem__(self, idx):
-        # Generate random indices from [2, vocab_size) 
-        # (0 and 1 are usually reserved for <PAD> and <SOS>)
-        data = torch.randint(2, self.vocab_size, (self.seq_len,))
+        # Reserve: 0 for <PAD>, 1 for <SOS>, 2 for <EOS>
+        # Generate random numbers from [3, vocab_size)
+        data = torch.randint(3, self.vocab_size, (self.seq_len,))
         
-        # In a copy task, the input (src) and the output (tgt) are identical
-        # However, for the Transformer, we usually shift the target for the decoder
+        # src: Just the random numbers
         src = data
-        tgt = data
+        
+        # tgt: Prepend <SOS> and Append <EOS>
+        # This makes tgt_len = seq_len + 2
+        sos = torch.tensor([1])
+        eos = torch.tensor([2])
+        tgt = torch.cat([sos, data, eos])
+        
         return src, tgt
