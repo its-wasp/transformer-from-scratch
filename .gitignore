@@ -17,7 +17,7 @@ build/
 checkpoints/
 
 # Experiment logs
-experiments/runs/
+experiments/
 wandb/
 *.log
 
@@ -34,3 +34,4 @@ Thumbs.db
 # Misc
 *.zip
 *.tar.gz
+
