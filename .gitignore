@@ -17,7 +17,6 @@ build/
 checkpoints/
 
 # Experiment logs
-experiments/
 wandb/
 *.log
 
